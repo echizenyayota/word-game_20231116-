@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const App = () => {
 
@@ -27,7 +27,9 @@ const App = () => {
     }
   }
 
-  console.log(chosenLevel);
+  useEffect(() => {
+    if(chosenLevel) getRandomWords();
+  }, [chosenLevel])
   
 
   return (
@@ -41,6 +43,7 @@ const App = () => {
           value={chosenLevel}
           onChange={(e) => setChosenLevel(e.target.value)}
         >
+          <option value={null}>Select a Level</option>
           <option value="1">Level 1</option>
           <option value="2">Level 2</option>
           <option value="3">Level 3</option>

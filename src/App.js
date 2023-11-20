@@ -33,9 +33,12 @@ const App = () => {
 
   useEffect(() => {
     if(chosenLevel) getRandomWords();
-  }, [chosenLevel])
-  
+  }, [chosenLevel]);
 
+  const checkAnswer = (optIndex, correctAnswer) => {
+    console.log(optIndex, correctAnswer);
+  }
+  
   return (
     <div className="App">
       {!chosenLevel && <div className="level-selector">
@@ -62,9 +65,13 @@ const App = () => {
               <p key={_index}>{tip}</p>
             ))}
             <div className="question-buttons">
-              {question.option.map((opt, optionIndex) => (
+              {question.option.map((opt, optIndex) => (
                 <div className="question-button">
-                  <button>{opt}</button>
+                  <button
+                    onClick={() => checkAnswer(optIndex + 1, question.correct)}
+                  >
+                    {opt}
+                  </button>
                 </div>
               ))}
             </div>

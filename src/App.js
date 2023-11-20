@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 
 const App = () => {
 
-  const [chosenLevel, setChosenLevel] = useState(null);
+  const [chosenLevel, setChosenLevel] = useState("2");
+  const [words, setWords] = useState(null);
 
   const getRandomWords = async () => {
     const options = {
@@ -22,10 +23,13 @@ const App = () => {
     try {
       const response = await axios.request(options);
       console.log(response.data);
+      setWords(response.data);
     } catch (error) {
       console.error(error);
     }
   }
+
+  console.log(words);
 
   useEffect(() => {
     if(chosenLevel) getRandomWords();
@@ -43,7 +47,7 @@ const App = () => {
           value={chosenLevel}
           onChange={(e) => setChosenLevel(e.target.value)}
         >
-          <option value={null}>Select a Level</option>
+          <option value={null}>Select a level</option>
           <option value="1">Level 1</option>
           <option value="2">Level 2</option>
           <option value="3">Level 3</option>
@@ -52,6 +56,9 @@ const App = () => {
 
       {chosenLevel && <div className="question-area">
         <h1>Welcome to level: {chosenLevel}</h1>
+        <div className="question-box">
+
+        </div>
       </div>}
     </div>
   );

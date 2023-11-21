@@ -45,8 +45,6 @@ const App = () => {
     setClicked([...clicked, opt]);
   }
 
-  console.log(correctAnswers);
-  
   return (
     <div className="App">
       {!chosenLevel && <div className="level-selector">
@@ -81,6 +79,7 @@ const App = () => {
                   >
                     {opt}
                   </button>
+                  {correctAnswers.includes(opt) && <p>Correct!</p>}
                 </div>
               ))}
             </div>

@@ -17,7 +17,7 @@ code {
 }
 
 .question-area {
-  background-color: blue;
+  max-width: 1000px;
 }
 
 .question-box {
@@ -35,4 +35,24 @@ code {
 .question-button {
   display: flex;
   flex-direction: column;
+}
+
+.questions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+button {
+  margin: 5px;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  background-color: darkcyan;
+  color: white;
+}
+
+button:disabled {
+  background-color: darkgrey;
+  color: darkolivegreen;
 }

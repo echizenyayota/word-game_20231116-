@@ -70,27 +70,29 @@ const App = () => {
       {chosenLevel && words && <div className="question-area">
         <h1>Welcome to level: {chosenLevel}</h1>
         <h3>Your score is {score}</h3>
-        {words.quizlist.map((question, _questionIndex) => (
-          <div key={_questionIndex} className="question-box">
-            {question.quiz.map((tip, _index) => (
-              <p key={_index}>{tip}</p>
-            ))}
-            <div className="question-buttons">
-              {question.option.map((opt, optIndex) => (
-                <div key={optIndex} className="question-button">
-                  <button
-                    disabled={clicked.includes(opt)}
-                    onClick={() => checkAnswer(opt, optIndex + 1, question.correct)}
-                  >
-                    {opt}
-                  </button>
-                  {correctAnswers.includes(opt) && <p>Correct!</p>}
-                </div>
+        <div className="questions">
+          {words.quizlist.map((question, _questionIndex) => (
+            <div key={_questionIndex} className="question-box">
+              {question.quiz.map((tip, _index) => (
+                <p key={_index}>{tip}</p>
               ))}
+              <div className="question-buttons">
+                {question.option.map((opt, optIndex) => (
+                  <div key={optIndex} className="question-button">
+                    <button
+                      disabled={clicked.includes(opt)}
+                      onClick={() => checkAnswer(opt, optIndex + 1, question.correct)}
+                    >
+                      {opt}
+                    </button>
+                    {correctAnswers.includes(opt) && <p>Correct!</p>}
+                  </div>
+                ))}
+              </div>
+              <p>{question.correct}</p>
             </div>
-            <p>{question.correct}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>}
     </div>
   );

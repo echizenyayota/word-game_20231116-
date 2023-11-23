@@ -10,10 +10,23 @@ const App = () => {
   const [score, setScore] = useState(0);
 
   const getRandomWords = async () => {
-    
-  }
+    const options = {
+      method: 'GET',
+      url: 'http://localhost:8000/results',
+      params: {
+        level: chosenLevel,
+        area: 'sat'
+      },
+    };
 
-  console.log(words);
+    try {
+      const response = await axios.request(options);
+      console.log(response.data);
+      setWords(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
     if(chosenLevel) getRandomWords();
@@ -77,7 +90,6 @@ const App = () => {
                   </div>
                 ))}
               </div>
-              <p>{question.correct}</p>
             </div>
           ))}
         </div>

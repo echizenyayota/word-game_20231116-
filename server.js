@@ -6,16 +6,22 @@ const axios = require("axios");
 
 const app = express();
 
+app.use(cors());
+
 app.get("/", (req, res) => {
   res.json("Hi!");
 });
 
 app.get("/results", async (req, res) => {
+
+  const passedLevel = req.query.level;
+  console.log(passedLevel);
+
   const options = {
     method: 'GET',
     url: 'https://twinword-word-association-quiz.p.rapidapi.com/type1/',
     params: {
-      level: "2",
+      level: passedLevel,
       area: 'sat'
     },
     headers: {
@@ -26,7 +32,7 @@ app.get("/results", async (req, res) => {
 
   try {
     const response = await axios.request(options);
-    console.log(response.data);
+    res.json(response.data);
   } catch (error) {
     console.error(error);
   }
